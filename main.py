@@ -13,37 +13,37 @@ FPS = 60
 
 #Bubble sort button
 bubble_sort_rect = pygame.Rect(0, 0, 150, 75)
-bubble_sort_image = pygame.image.load("Bubble sort.png")
+bubble_sort_image = pygame.image.load("Button images/Bubble sort.png")
 bubble_sort_image = pygame.transform.scale(bubble_sort_image, (150,75))
 bubble_sort = False
 
 #Insertion sort button
 insertion_sort_rect = pygame.Rect(150, 0, 150, 75)
-insertion_sort_image = pygame.image.load("Insertion sort.png")
+insertion_sort_image = pygame.image.load("Button images/Insertion sort.png")
 insertion_sort_image = pygame.transform.scale(insertion_sort_image, (150,75))
 insertion_sort = False
 
 #Selection sort button
 selection_sort_rect = pygame.Rect(300, 0, 150, 75)
-selection_sort_image = pygame.image.load("Selection sort.png")
+selection_sort_image = pygame.image.load("Button images/Selection sort.png")
 selection_sort_image = pygame.transform.scale(selection_sort_image, (150,75))
 selection_sort = False
 
 #Quick sort button
 quick_sort_rect = pygame.Rect(450, 0, 150, 75)
-quick_sort_image = pygame.image.load("Quick sort.png")
+quick_sort_image = pygame.image.load("Button images/Quick sort.png")
 quick_sort_image = pygame.transform.scale(quick_sort_image, (150,75))
 quick_sort = False
 
 # Merge sort button
 merge_sort_rect = pygame.Rect(600, 0, 150, 75)
-merge_sort_image = pygame.image.load("Merge sort.png")
+merge_sort_image = pygame.image.load("Button images/Merge sort.png")
 merge_sort_image = pygame.transform.scale(merge_sort_image, (150,75))
 merge_sort = False
 
 #Reset button
 reset_rect = pygame.Rect(750, 0, 150, 75)
-reset_image = pygame.image.load("Reset.png")
+reset_image = pygame.image.load("Button images/Reset.png")
 reset_image = pygame.transform.scale(reset_image, (150,75))
 
 
