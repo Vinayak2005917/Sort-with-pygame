@@ -35,8 +35,7 @@ while running:
         y = 550 - bar_height
         pygame.draw.rect(screen, (0, 0, 0), (x, y, 20, bar_height))
      
-    quick_sort(numbers)
-    
+    sorting_functions.quick_sort(numbers)
     
     pygame.display.flip()
     clock.tick(FPS)
