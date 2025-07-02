@@ -38,4 +38,62 @@ def selection_sort(arr):
         
 
 
-# #Merge Sort, and Quick Sort
+# #Merge Sort
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        L = arr[:mid]
+        R = arr[mid:]
+
+        yield from merge_sort(L)
+        yield from merge_sort(R)
+
+        i = j = k = 0
+
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+            yield
+
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+            yield
+
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+            yield
+
+
+
+
+# Quick Sort
+def quick_sort(arr, low, high):
+    stack = [(low, high)]
+
+    while stack:
+        low, high = stack.pop()
+        if low < high:
+            pivot_index = partition(arr, low, high)
+            yield
+            stack.append((low, pivot_index - 1))
+            stack.append((pivot_index + 1, high))
+
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+    for j in range(low, high):
+        if arr[j] < pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+            time.sleep(0.05)
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1

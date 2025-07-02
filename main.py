@@ -30,6 +30,12 @@ selection_sort_image = pygame.image.load("Selection sort.png")
 selection_sort_image = pygame.transform.scale(selection_sort_image, (150,75))
 selection_sort = False
 
+#Quick sort button
+quick_sort_rect = pygame.Rect(450, 0, 150, 75)
+quick_sort_image = pygame.image.load("Quick sort.png")
+quick_sort_image = pygame.transform.scale(quick_sort_image, (150,75))
+quick_sort = False
+
 
 #Timer
 count = 0
@@ -74,12 +80,19 @@ while running:
                 start_time = pygame.time.get_ticks()
                 print("Selection sort button clicked!")
                 sort_generator = sorting_functions.selection_sort(numbers)
+            elif quick_sort_rect.collidepoint(event.pos):
+                quick_sort = True
+                timer_running = True
+                start_time = pygame.time.get_ticks()
+                print("Quick sort button clicked!")
+                sort_generator = sorting_functions.quick_sort(numbers, 0, len(numbers) - 1)
 
 
     screen.fill((255,255,255))
     screen.blit(bubble_sort_image, bubble_sort_rect)
     screen.blit(insertion_sort_image, insertion_sort_rect)
     screen.blit(selection_sort_image, selection_sort_rect)
+    screen.blit(quick_sort_image, quick_sort_rect)
     screen.blit(text_surface, text_rect) 
 
 
@@ -91,10 +104,7 @@ while running:
         pygame.draw.rect(screen, (0, 0, 0), (x, y, 20, bar_height))
 
 
-
-
-
-    if bubble_sort or insertion_sort or selection_sort:
+    if bubble_sort or insertion_sort or selection_sort or quick_sort:
         try:
             next(sort_generator)
         except StopIteration:
@@ -102,6 +112,7 @@ while running:
             bubble_sort = False
             insertion_sort = False
             selection_sort = False
+            quick_sort = False
             elapsed_time = (pygame.time.get_ticks() - start_time) / 1000
             text_surface = font.render(f'Sorted in {elapsed_time:.2f} seconds', True, (0, 0, 0))
             text_rect = text_surface.get_rect()
