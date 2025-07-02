@@ -4,7 +4,6 @@ import random
 import time
 import sorting_functions
 
-
 pygame.init()
 WIDTH, HEIGHT = 1000, 700
 screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.RESIZABLE)
@@ -35,6 +34,12 @@ quick_sort_rect = pygame.Rect(450, 0, 150, 75)
 quick_sort_image = pygame.image.load("Quick sort.png")
 quick_sort_image = pygame.transform.scale(quick_sort_image, (150,75))
 quick_sort = False
+
+# Merge sort button
+merge_sort_rect = pygame.Rect(600, 0, 150, 75)
+merge_sort_image = pygame.image.load("Merge sort.png")
+merge_sort_image = pygame.transform.scale(merge_sort_image, (150,75))
+merge_sort = False
 
 
 #Timer
@@ -86,6 +91,12 @@ while running:
                 start_time = pygame.time.get_ticks()
                 print("Quick sort button clicked!")
                 sort_generator = sorting_functions.quick_sort(numbers, 0, len(numbers) - 1)
+            elif merge_sort_rect.collidepoint(event.pos):
+                merge_sort = True
+                timer_running = True
+                start_time = pygame.time.get_ticks()
+                print("Merge sort button clicked!")
+                sort_generator = sorting_functions.merge_sort(numbers)
 
 
     screen.fill((255,255,255))
@@ -93,6 +104,7 @@ while running:
     screen.blit(insertion_sort_image, insertion_sort_rect)
     screen.blit(selection_sort_image, selection_sort_rect)
     screen.blit(quick_sort_image, quick_sort_rect)
+    screen.blit(merge_sort_image, merge_sort_rect)
     screen.blit(text_surface, text_rect) 
 
 
@@ -104,7 +116,7 @@ while running:
         pygame.draw.rect(screen, (0, 0, 0), (x, y, 20, bar_height))
 
 
-    if bubble_sort or insertion_sort or selection_sort or quick_sort:
+    if bubble_sort or insertion_sort or selection_sort or quick_sort or merge_sort:
         try:
             next(sort_generator)
         except StopIteration:
@@ -113,6 +125,7 @@ while running:
             insertion_sort = False
             selection_sort = False
             quick_sort = False
+            merge_sort = False
             elapsed_time = (pygame.time.get_ticks() - start_time) / 1000
             text_surface = font.render(f'Sorted in {elapsed_time:.2f} seconds', True, (0, 0, 0))
             text_rect = text_surface.get_rect()

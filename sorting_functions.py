@@ -1,5 +1,9 @@
 import time
-
+import pygame
+#sound effect
+pygame.mixer.init()
+pygame.mixer.music.load('mixkit-camera-shutter-click-1133.wav')
+pygame.mixer.music.set_volume(0.5)
 
 #Bubble Sort
 def bubble_sort(arr):
@@ -7,6 +11,7 @@ def bubble_sort(arr):
         for j in range(len(arr) - 1):
             if arr[j] > arr[j + 1]:
                 time.sleep(0.05)
+                pygame.mixer.music.play(0)
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 yield 
             
@@ -17,6 +22,7 @@ def insertion_sort(arr):
         j = i - 1
         while j >= 0 and key < arr[j]:
             time.sleep(0.05)
+            pygame.mixer.music.play(0)
             arr[j + 1] = arr[j]
             j -= 1
             yield
@@ -33,6 +39,7 @@ def selection_sort(arr):
                 min_index = j
         if min_index != i:
             time.sleep(0.05)
+            pygame.mixer.music.play(0)
             arr[i], arr[min_index] = arr[min_index], arr[i]
             yield
         
