@@ -6,7 +6,7 @@ import sorting_functions
 
 
 pygame.init()
-WIDTH, HEIGHT = 800, 700
+WIDTH, HEIGHT = 1000, 700
 screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.RESIZABLE)
 pygame.display.set_caption("Pygame Basic Setup")
 clock = pygame.time.Clock()
@@ -42,9 +42,9 @@ text_rect.topleft = (10, 85)
 
 
 
-
+number_of_bars = 31
 #this generates a list of random numbers
-numbers = [random.randint(50, 500) for _ in range(25)]
+numbers = [random.randint(50, 500) for _ in range(number_of_bars)]
 
 # Main loop
 running = True
@@ -84,7 +84,7 @@ while running:
 
 
 
-    for i in range(25):
+    for i in range(number_of_bars):
         bar_height = numbers[i]
         x = 10 + (i * 31.6)
         y = 695 - bar_height
