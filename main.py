@@ -12,11 +12,21 @@ pygame.display.set_caption("Pygame Basic Setup")
 clock = pygame.time.Clock()
 FPS = 60
 
+#Bubble sort button
+bubble_sort_rect = pygame.Rect(0, 0, 150, 75)
+bubble_sort_image = pygame.image.load("Bubble sort.png")
+bubble_sort_image = pygame.transform.scale(bubble_sort_image, (150,75))
+bubble_sort = False
 
-button_rect = pygame.Rect(0, 0, 150, 75)
-button_image = pygame.image.load("Quick sort.png")
-button_image = pygame.transform.scale(button_image, (150,75))
-sort = False
+#Insertion sort button
+insertion_sort_rect = pygame.Rect(150, 0, 150, 75)
+insertion_sort_image = pygame.image.load("Insertion sort.png")
+insertion_sort_image = pygame.transform.scale(insertion_sort_image, (150,75))
+inertion_sort = False
+
+
+
+
 #this generates a list of random numbers
 numbers = [random.randint(50, 500) for _ in range(20)]
 
@@ -30,12 +40,19 @@ while running:
             WIDTH, HEIGHT = event.w, event.h
             screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if button_rect.collidepoint(event.pos):
-                if button_rect.collidepoint(event.pos):
-                    sort = True
-                    print("Button clicked!")
+            if bubble_sort_rect.collidepoint(event.pos):
+                if bubble_sort_rect.collidepoint(event.pos):
+                    bubble_sort = True
+                    print("Bubble sort button clicked!")
+            elif insertion_sort_rect.collidepoint(event.pos):
+                if insertion_sort_rect.collidepoint(event.pos):
+                    inertion_sort = True
+                    print("Insertion sort button clicked!")
+
+
     screen.fill((255,255,255))
-    screen.blit(button_image, button_rect)
+    screen.blit(bubble_sort_image, bubble_sort_rect)
+    screen.blit(insertion_sort_image, insertion_sort_rect)
 
 
 
@@ -45,8 +62,11 @@ while running:
         y = 595 - bar_height
         pygame.draw.rect(screen, (0, 0, 0), (x, y, 20, bar_height))
     
-    if sort:
+    if bubble_sort:
         sorting_functions.bubble_sort(numbers)
+    elif inertion_sort:
+        sorting_functions.insertion_sort(numbers)
+
     
     pygame.display.flip()
     clock.tick(FPS)
