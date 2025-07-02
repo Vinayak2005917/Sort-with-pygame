@@ -5,9 +5,9 @@ import time
 import sorting_functions
 
 pygame.init()
-WIDTH, HEIGHT = 1000, 700
+WIDTH, HEIGHT = 1200, 700
 screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.RESIZABLE)
-pygame.display.set_caption("Pygame Basic Setup")
+pygame.display.set_caption("Sorting Algorithms Visualizer with Audio")
 clock = pygame.time.Clock()
 FPS = 60
 
@@ -55,11 +55,11 @@ start_time = 0
 font = pygame.font.SysFont(None, 48)
 text_surface = font.render(f'Time = {count}', True, (0, 0, 0))
 text_rect = text_surface.get_rect()
-text_rect.topleft = (10, 85)
+text_rect.topleft = (0, 85)
 
 
 
-number_of_bars = 31
+number_of_bars = 40
 #this generates a list of random numbers
 numbers = [random.randint(50, 500) for _ in range(number_of_bars)]
 
@@ -129,11 +129,20 @@ while running:
 
 
 
+    sorted_numbers = sorted(numbers)  # Keep this OUTSIDE the loop
     for i in range(number_of_bars):
         bar_height = numbers[i]
-        x = 10 + (i * 31.6)
+        x = 10 + (i * 29.8)
         y = 695 - bar_height
-        pygame.draw.rect(screen, (0, 0, 0), (x, y, 20, bar_height))
+        if numbers[i] == sorted_numbers[i]:
+            color = (0, 190, 0)
+        elif numbers[i] - sorted_numbers[i] < 15:
+            color = (225, 80, 8)
+        elif numbers[i] - sorted_numbers[i] < 1:
+            color = (225, 10, 8)
+        else:
+            color = (0, 0, 0)
+        pygame.draw.rect(screen, color, (x, y, 20, bar_height))
 
 
     if bubble_sort or insertion_sort or selection_sort or quick_sort or merge_sort:
