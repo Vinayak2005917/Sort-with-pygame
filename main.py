@@ -41,6 +41,12 @@ merge_sort_image = pygame.image.load("Merge sort.png")
 merge_sort_image = pygame.transform.scale(merge_sort_image, (150,75))
 merge_sort = False
 
+#Reset button
+reset_rect = pygame.Rect(750, 0, 150, 75)
+reset_image = pygame.image.load("Reset.png")
+reset_image = pygame.transform.scale(reset_image, (150,75))
+
+
 
 #Timer
 count = 0
@@ -97,6 +103,19 @@ while running:
                 start_time = pygame.time.get_ticks()
                 print("Merge sort button clicked!")
                 sort_generator = sorting_functions.merge_sort(numbers)
+            elif reset_rect.collidepoint(event.pos):
+                bubble_sort = False
+                insertion_sort = False
+                selection_sort = False
+                quick_sort = False
+                merge_sort = False
+                timer_running = False
+                numbers = [random.randint(50, 500) for _ in range(number_of_bars)]
+                start_time = 0
+                text_surface = font.render(f'Time = {count}', True, (0, 0, 0))
+                text_rect = text_surface.get_rect()
+                text_rect.topleft = (10, 85)
+                print("Reset button clicked!")
 
 
     screen.fill((255,255,255))
@@ -105,6 +124,7 @@ while running:
     screen.blit(selection_sort_image, selection_sort_rect)
     screen.blit(quick_sort_image, quick_sort_rect)
     screen.blit(merge_sort_image, merge_sort_rect)
+    screen.blit(reset_image, reset_rect)
     screen.blit(text_surface, text_rect) 
 
 

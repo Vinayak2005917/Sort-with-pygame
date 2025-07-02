@@ -66,18 +66,21 @@ def merge_sort(arr):
                 j += 1
             k += 1
             yield
+            pygame.mixer.music.play(0)
 
         while i < len(L):
             arr[k] = L[i]
             i += 1
             k += 1
             yield
+            pygame.mixer.music.play(0)
 
         while j < len(R):
             arr[k] = R[j]
             j += 1
             k += 1
             yield
+            pygame.mixer.music.play(0)
 
 
 
@@ -102,5 +105,6 @@ def partition(arr, low, high):
             i += 1
             arr[i], arr[j] = arr[j], arr[i]
             time.sleep(0.05)
+            pygame.mixer.music.play(0)
     arr[i + 1], arr[high] = arr[high], arr[i + 1]
     return i + 1
